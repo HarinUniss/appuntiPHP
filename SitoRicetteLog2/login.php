@@ -4,6 +4,7 @@
 if (isset($_POST['email']) &&  isset($_POST['password'])) //verifico se ha riempito entrambi i campi
 {
 
+
     foreach ($users as $user) //per ogni user registrato in memoria
     {
         if (
