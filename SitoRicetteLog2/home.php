@@ -18,14 +18,42 @@
 
 
 <?php
-//crea connessione
-$conn = new mysqli("127.0.0.1", "root", "", "we_love_food");
 
-//Controllo connessione
-if($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error); //streammo l'errore di connessione
-}
-$conn->close();
+// Souvent on identifie cet objet par la variable $conn ou $db
+$mysqlConnection = new PDO(
+    'mysql:host=127.0.0.1;dbname=we_love_food;charset=utf8mb4',
+    'root',
+    ''
+);
+
+//linea che serve se mettiamo la pagina sul web al posto della parte precedente
+//$db = new PDO('mysql:host=sql.hebergeur.com;dbname=mabase;charset=utf8', 'pierre.durand', 's3cr3t');
+//
+
+//altra possibilità
+////crea connessione
+//$conn = new mysqli("127.0.0.1", "root", "", "we_love_food");
+//
+////Controllo connessione
+//if($conn->connect_error) {
+//    die("Connessione fallita: " . $conn->connect_error); //streammo l'errore di connessione
+//}
+//$conn->close();
+//
+//<!--//parte che verifica se credenziali di accesso al DB sono corrette nel caso senga -->
+//<!--    un messaggio d'errore senza mostrare sensibili dati a schermo -->
+
+//try
+//{
+//    $db = new PDO('mysql:host=localhost;dbname=we_love_food;charset=utf8', 'root', '');
+//}
+//catch (Exception $e)
+//{
+//    die('Erreur : ' . $e->getMessage());
+//}
+//
+
+
 ?>
 
 
@@ -46,15 +74,4 @@ $conn->close();
             <h1>Sito di ricette!</h1>
                     <?php foreach(get_recipes($recipes, $limit) as $recipe) : ?>
                         <article>
-                            <h3><?php echo $recipe['title']; ?></h3>
-                            <div><?php echo $recipe['recipe']; ?></div>
-                            <i><?php echo display_author($recipe['author'], $users); ?></i>
-                        </article>
-                    <?php endforeach ?>
-            <?php endif; ?>
-        </div>
-
-        <!-- Inserire Pie di pagina -->
-        <?php include_once('footer.php'); ?>
-    </body>
-</html>
+                            <h3><?php echo $recipe['ti
