@@ -1,5 +1,7 @@
 <?php session_start();  //accedo alla variabile globale $_SESSION ?>
 <!-- Fare in modo che una volta fatto il loghin la sessione resti aperta nelle altre pagine del sito -->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,20 @@
         rel="stylesheet"
     >
 </head>
+
+
+
+<?php
+//crea connessione
+$conn = new mysqli("127.0.0.1", "root", "", "we_love_food");
+
+//Controllo connessione
+if($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error); //streammo l'errore di connessione
+}
+$conn->close();
+?>
+
 
     <body class="d-flex flex-column min-vh-100">
         
